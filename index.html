@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Resultado</h1>
+  <p id="result">Aguardando resultado...</p>
+
+  <script>
+    // Atualiza o resultado usando JavaScript
+    fetch('/').then(response => response.json()).then(data => {
+      const resultElement = document.getElementById('result');
+      resultElement.innerText = `O valor da variável de endereço é: ${data.address}`;
+      resultElement.style.color = '#333'; // Cor padrão para o resultado
+    }).catch(error => {
+      console.error('Erro ao obter o resultado:', error);
+      const resultElement = document.getElementById('result');
+      resultElement.innerText = 'Erro ao obter o resultado.';
+      resultElement.style.color = 'red'; // Cor vermelha para indicar erro
+    });
+  </script>
+</body>
+</html>
